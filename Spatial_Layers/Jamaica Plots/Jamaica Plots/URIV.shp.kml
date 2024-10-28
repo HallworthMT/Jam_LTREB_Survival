@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>URIV.shp</name>
+	<Schema name="Point_ge" id="S_Point_ge_S20">
+		<SimpleField type="string" name="Comment"><displayName>&lt;b&gt;Comment&lt;/b&gt;</displayName>
+</SimpleField>
+	</Schema>
+	<Style id="normPointStyle70">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
+			</Icon>
+		</IconStyle>
+		<BalloonStyle>
+			<text><![CDATA[<table border="0">
+  <tr><td><b>Comment</b></td><td>$[Point_ge/Comment]</td></tr>
+</table>]]></text>
+		</BalloonStyle>
+	</Style>
+	<StyleMap id="pointStyleMap70">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#normPointStyle70</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#hlightPointStyle70</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="hlightPointStyle70">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png</href>
+			</Icon>
+		</IconStyle>
+		<BalloonStyle>
+			<text><![CDATA[<table border="0">
+  <tr><td><b>Comment</b></td><td>$[Point_ge/Comment]</td></tr>
+</table>]]></text>
+		</BalloonStyle>
+	</Style>
+	<Folder id="layer 0">
+		<name>Point_ge</name>
+		<Placemark>
+			<styleUrl>#pointStyleMap70</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S20">
+					<SimpleData name="Comment">Y 3</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93369679998045,18.0400383442857,-14.5076417258722</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap70</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S20">
+					<SimpleData name="Comment">Y.5 3</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93376107133145,18.04028166848805,-14.31326949411372</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap70</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S20">
+					<SimpleData name="Comment">Z 3</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93365128568013,18.04049080520064,-13.69600437074035</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap70</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S20">
+					<SimpleData name="Comment">Z 3.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93384505475895,18.04060511434583,-17.45676765636209</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap70</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S20">
+					<SimpleData name="Comment">Y.5 3.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93394988768455,18.04043627019889,-14.6012085496122</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap70</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S20">
+					<SimpleData name="Comment">Y 3.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93404771621913,18.04022033002051,-14.28575322902525</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap70</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S20">
+					<SimpleData name="Comment">X.5 3.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93419891204596,18.04000826970516,-11.60156018822521</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap70</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S20">
+					<SimpleData name="Comment">X 3.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93430410339727,18.03980925157326,-12.79076874675814</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap70</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S20">
+					<SimpleData name="Comment">X 4</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93449698094834,18.03996147256947,-13.30841723117803</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap70</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S20">
+					<SimpleData name="Comment">X.5 4</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93439930281578,18.04016652687193,-12.93214968084425</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap70</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S20">
+					<SimpleData name="Comment">Y 4</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93430073754045,18.0403618596048,-13.8213117191109</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap70</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S20">
+					<SimpleData name="Comment">Y.5 4</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93414754916722,18.04056132479732,-14.11969936541349</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap70</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S20">
+					<SimpleData name="Comment">Z 4</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93402410725985,18.04073922161136,-14.08649817739511</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap70</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S20">
+					<SimpleData name="Comment">X.5 4.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93460471308188,18.04026264270606,-11.49537282475958</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap70</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S20">
+					<SimpleData name="Comment">X 4.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93472072974323,18.04007411609706,-14.38468446637232</coordinates>
+			</Point>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>RD7.shp</name>
+	<Schema name="Point_ge" id="S_Point_ge_S60">
+		<SimpleField type="string" name="Comment"><displayName>&lt;b&gt;Comment&lt;/b&gt;</displayName>
+</SimpleField>
+	</Schema>
+	<StyleMap id="pointStyleMap110">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#normPointStyle110</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#hlightPointStyle110</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="hlightPointStyle110">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png</href>
+			</Icon>
+		</IconStyle>
+		<BalloonStyle>
+			<text><![CDATA[<table border="0">
+  <tr><td><b>Comment</b></td><td>$[Point_ge/Comment]</td></tr>
+</table>]]></text>
+		</BalloonStyle>
+	</Style>
+	<Style id="normPointStyle110">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
+			</Icon>
+		</IconStyle>
+		<BalloonStyle>
+			<text><![CDATA[<table border="0">
+  <tr><td><b>Comment</b></td><td>$[Point_ge/Comment]</td></tr>
+</table>]]></text>
+		</BalloonStyle>
+	</Style>
+	<Folder id="layer 0">
+		<name>Point_ge</name>
+		<Placemark>
+			<styleUrl>#pointStyleMap110</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S60">
+					<SimpleData name="Comment">Y 2.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.94202147553339,18.0380236668844,-14.1632432954143</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap110</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S60">
+					<SimpleData name="Comment">Y 2</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.94226758588488,18.03810113591271,-13.64338745461896</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap110</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S60">
+					<SimpleData name="Comment">X.5 2</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.94236669151793,18.03791925490309,-11.59570967613084</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap110</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S60">
+					<SimpleData name="Comment">X.5 2.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.94209505444344,18.03780911431992,-12.34096017202067</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap110</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S60">
+					<SimpleData name="Comment">X 2.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.942236770077,18.03760324642779,-14.32273940033709</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap110</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S60">
+					<SimpleData name="Comment">X 2</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.94246327743626,18.03769557827831,-12.06230543776845</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap110</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S60">
+					<SimpleData name="Comment">X 1.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.94272767430203,18.0377965061138,-15.96220743444556</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap110</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S60">
+					<SimpleData name="Comment">X.5 1.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.9425915478696,18.03798875529118,-15.39249320145852</coordinates>
+			</Point>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>

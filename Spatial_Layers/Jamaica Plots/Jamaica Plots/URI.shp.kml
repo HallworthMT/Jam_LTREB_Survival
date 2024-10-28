@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>URI.shp</name>
+	<Schema name="Point_ge" id="S_Point_ge_S7">
+		<SimpleField type="string" name="Comment"><displayName>&lt;b&gt;Comment&lt;/b&gt;</displayName>
+</SimpleField>
+	</Schema>
+	<Style id="normPointStyle40">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
+			</Icon>
+		</IconStyle>
+		<BalloonStyle>
+			<text><![CDATA[<table border="0">
+  <tr><td><b>Comment</b></td><td>$[Point_ge/Comment]</td></tr>
+</table>]]></text>
+		</BalloonStyle>
+	</Style>
+	<Style id="hlightPointStyle40">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png</href>
+			</Icon>
+		</IconStyle>
+		<BalloonStyle>
+			<text><![CDATA[<table border="0">
+  <tr><td><b>Comment</b></td><td>$[Point_ge/Comment]</td></tr>
+</table>]]></text>
+		</BalloonStyle>
+	</Style>
+	<StyleMap id="pointStyleMap40">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#normPointStyle40</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#hlightPointStyle40</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Folder id="layer 0">
+		<name>Point_ge</name>
+		<open>1</open>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">C 3</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93432364251238,18.037348687212,-16.18988415686667</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">C 2.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93457341207231,18.03734599219671,-11.47784941907736</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">C 2</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93484873517751,18.03734902723469,-12.5857349272382</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">C.5 2</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93487327043364,18.03754824080669,-12.50829616520994</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">C.5 2.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93463983351251,18.03754735947736,-13.07408404411342</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">C.5 3</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93440422075412,18.03756182364035,-14.08953116651388</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">D 3</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93440957519773,18.03782013441216,-13.95894540294591</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">D 2.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93467206344303,18.03779243360655,-15.04647756334158</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">D 2</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93489867762453,18.03777988340899,-15.73658723979538</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">D 3.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93413668514626,18.03781266093672,-11.39350240941854</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">D.5 3.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93413063164074,18.03802759913832,-12.85383227980149</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">D.5 4</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93394208519588,18.03803944189086,-10.65573328252645</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">E 4</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93397412585088,18.03826063835336,-13.18177983371734</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">E.5 4</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93397580247277,18.03849183263424,-11.8073587140274</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">E.5 3.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93419587939729,18.03847503447406,-14.08831883320555</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">E.5 3</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93443967613314,18.03846001290991,-11.55806775009644</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">E.5 2.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93467990626473,18.03845637019034,-11.37345493984595</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">F 2.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93474627087656,18.03862242828342,-7.791598038850526</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">F 3</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93449027726416,18.03865926936425,-14.48072493787618</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">F 3.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93423793148169,18.03869524211946,-13.34549680467458</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">F 4</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93399820010599,18.03872475346886,-11.2156649051376</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">F.5 3.5</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93425437967612,18.03892309344594,-8.856126124819236</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">F.5 4</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93400043999148,18.03895043567723,-10.27675855871053</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">G 4</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93398776955162,18.0391740944648,-13.56910585876317</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">G.5 4</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93395200486121,18.03938803513973,-12.71148067231985</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">H 4</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93392754261866,18.03963223316917,-13.48283204948914</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">H.5 4</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93396059165073,18.03987741767267,-14.69221289471797</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<styleUrl>#pointStyleMap40</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#S_Point_ge_S7">
+					<SimpleData name="Comment">I 4</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-77.93370024536833,18.04003709439707,-13.98441567110459</coordinates>
+			</Point>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>
