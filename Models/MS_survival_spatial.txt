@@ -1,0 +1,143 @@
+model{
+#SURVIVAL #
+
+#HyperPriors
+for(m in 1:2){ # different means for migrants and residents #
+for(c in 1:ncovs){ # different covariates #
+
+BetaHyperPrior[m,c] ~ dnorm(0,tauBetaHP[m,c])
+sigmaBetaHP[m,c] ~ dgamma(0.001,0.001)
+tauBetaHP[m,c] <- 1/pow(sigmaBetaHP[m,c],2)
+
+} # END 
+# Survival 
+hyperphi[m] ~ dnorm(0,0.001)T(-10,10)
+backphi[m] <- exp(hyperphi[m])/(1+exp(hyperphi[m]))
+} # END migstatus
+
+# mean error distribution
+MuError ~ dnorm(0,0.001)
+sigmaError ~ dunif(0,100)
+tauError <- 1/pow(sigmaError,2)
+
+# for each year - draw from the mean error distribution 
+for(t in 1:n.occasions){
+Error[t] ~ dnorm(MuError,tauError)
+}
+
+# Priors and constraints
+for(sp in 1:nspp){ # species
+
+# Draw a random sample from the migrant / resident distribution #
+s.phi[sp] ~ dnorm(hyperphi[migstatus[sp]],0.001)T(-10,10)
+sp.phi[sp] <- exp(s.phi[sp])/(1+exp(s.phi[sp]))
+
+for(s in 1:3){ # sex
+  
+##########################
+#### Movement error 
+##########################
+for(xy in 1:2){ # x - y direction
+    sigmaMove[sp,s,xy] ~ dunif(0, 2000)          # movement Error
+    tauMove[sp,s,xy] <- 1/pow(sigmaMove[sp,s,xy],2) # movement Error 
+}
+
+# for(h in 1:2){ # habitat
+   for(t in 1:n.occasions){ # n.occasions
+  mean.phi.t.untrans[sp,s,t] ~ dnorm(s.phi[sp],0.001)T(-10,10)
+  mean.phi.t[sp,s,t] <- exp(mean.phi.t.untrans[sp,s,t])/(1+exp(mean.phi.t.untrans[sp,s,t]))
+  lphi[sp,s,t] <- log(mean.phi.t[sp,s,t]/(1-mean.phi.t[sp,s,t]))
+  } # END n.occasions
+
+p.mean[sp,s]~dunif(0,1)  
+} # END sex
+
+# Very simple beta structure #
+for(b in 1:ncovs){
+sigmaBetaSpecies[sp,b] ~ dunif(0,100)
+tauBetaSpecies[sp,b] <- 1/pow(sigmaBetaSpecies[sp,b],2)
+
+for(s in 1:3){ # Sex
+beta[s,sp,b] ~ dnorm(BetaHyperPrior[migstatus[sp],b],tauBetaSpecies[sp,b])
+} # END sex
+} # END ncovs
+
+} # END sp
+########################################################################
+# SURVIVAL CONSTRAINTS 
+########################################################################
+
+for(sp in 1:nspp){
+
+# Likelihood
+for (i in 1:n[sp]){
+
+# Define latent state at first capture
+        
+    z[i,First[i,sp],sp]<-1
+
+  for (t in (First[i,sp]+1):n.occasions){
+    
+    # State processes
+    # Survival
+    # Dispersal
+    FoundLocs[i,t,1,sp] ~ dnorm(FoundLocs[i,t-1,1,sp], tauMove[sp,sex[i,sp],1])T(xlim[1],xlim[2])
+    FoundLocs[i,t,2,sp] ~ dnorm(FoundLocs[i,t-1,2,sp], tauMove[sp,sex[i,sp],2])T(ylim[1],ylim[2])
+
+    # Movement - dispersal distance 
+      
+    d[i,t,sp] <- pow(pow(FoundLocs[i,t,1,sp]-FoundLocs[i,t-1,1,sp],2)+
+	                 pow(FoundLocs[i,t,2,sp]-FoundLocs[i,t-1,2,sp],2),0.5)
+
+    # Observation process
+    # Test whether the actual location is in- or outside the state-space
+    
+    for (g in 1:ngrids){
+      
+      inPlot[i,t,g,sp]<-(step(FoundLocs[i,t,1,sp] - grid.study.boundaries[g,1])* # x - xmin
+                        step(grid.study.boundaries[g,2] - FoundLocs[i,t,1,sp])* # xmax - x
+                        step(FoundLocs[i,t,2,sp] - grid.study.boundaries[g,3])* # y - ymin
+                        step(grid.study.boundaries[g,4] - FoundLocs[i,t,2,sp])) # ymax - y
+    } # g
+    
+    avail[i,t,sp]<-sum(inPlot[i,t,,sp])
+    
+    # Detection bernouli trial
+    # Is bird alive or dead - if alive previous year (1) then chances of survival 
+    # times survival of previous year
+
+    z[i,t,sp] ~ dbern(mu[i,t,sp] * z[i,t-1,sp])
+
+       mu[i,t,sp]<- (1 / (1+exp(-(lphi[sp,sex[i,sp],t]+
+	                              beta[sex[i,sp],sp,1]*NDVIstart[t-1]+
+                                  beta[sex[i,sp],sp,2]*NDVImar[t-1]+
+                                  beta[sex[i,sp],sp,3]*NDVIdelta[t-1]+
+                                  beta[sex[i,sp],sp,4]*PPTmar[t-1]+
+                                  beta[sex[i,sp],sp,5]*PPTsum[t-1]+
+                                  beta[sex[i,sp],sp,6]*PPTstart[t-1]+
+                                  Error[t]))))
+
+
+    # Capture History - coin flip of detection, alive and available. 
+    
+    CH[i,t,sp] ~ dbern(p.mean[sp,sex[i,sp]]  * z[i,t,sp] * avail[i,t,sp])
+    
+  } #t
+} # i 
+} # END sp
+
+
+	
+# Derived quantities #	
+for(t in 1:n.occasions){
+for(s in 1:3){
+res.phi[s,t] <- mean(mean.phi.t[residents,s,t])
+mig.phi[s,t] <- mean(mean.phi.t[migrants,s,t])
+}
+}
+for(sp in 1:nspp){
+for(i in 1:n[sp]){
+Life[i,sp] <- sum(z[i,First[i,sp]:n.occasions,sp])
+}
+}
+}

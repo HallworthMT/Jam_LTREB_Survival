@@ -1,0 +1,203 @@
+model{
+
+#########################################################################################
+#
+# Priors
+#
+#########################################################################################
+# Total area of all study plots
+Area <- 25.04877 # hectares
+
+#HyperPriors
+for(m in 1:2){ # different means for migrants and residents # 
+# Survival 
+hyperphi[m] ~ dnorm(0,0.001)T(-10,10)
+backphi[m] <- exp(hyperphi[m])/(1+exp(hyperphi[m]))
+} # END migstatus
+
+# Priors and constraints
+for(sp in 1:nspp){ # species
+
+# psi - detection 
+psi[sp] ~ dunif(0,1) 
+
+# intercept - intercept 
+intercept[sp] ~ dnorm(0,0.01)
+
+# sigma - standard deviation 
+sigma[sp] ~ dunif(0,500)
+
+# beta - distance related decay for detection
+beta[sp] <- 1/(2*sigma[sp]*sigma[sp])
+
+# precision for bivariate normal movement
+#tau[1:2,1:2] ~  dwish(moveerror[,],3)
+
+# standard deviation in bivariate normal movement
+# Sigma[1:2,1:2] <- inverse(tau[,])
+
+# standard deviation for movements in X & Y directions
+sigmaX[sp] ~ dunif(0,500)
+sigmaY[sp] ~ dunif(0,500)
+
+# precision measure for movements in X & Y directions
+tauX[sp] <- 1/(sigmaX[sp]*sigmaX[sp])
+tauY[sp] <- 1/(sigmaY[sp]*sigmaY[sp])
+
+for(y in 1:nyears){
+# Prior for year specific recruitment probability
+gamma[sp,y] ~ dunif(0,1) 
+
+# Prior for year specific survival
+# survival #
+# Draw a random sample from the migrant / resident distribution #
+s.phi[sp,y] ~ dnorm(hyperphi[migstatus[sp]],0.001)T(-10,10)
+sp.phi[sp,y] <- exp(s.phi[sp,y])/(1+exp(s.phi[sp,y])) 
+
+} # END years
+
+##################################################################################
+#
+# Likelihood 
+#
+##################################################################################
+# FIRST YEAR
+
+for(i in 1:M){
+# Survival at time 1 is bernouli of detection
+z[i,1,sp]~dbern(psi[sp])
+
+# B indicates if individual is available to be recruited at time 1
+B[i,1,sp]<-(1-z[i,1,sp])
+
+# Activity centers for first year
+S[i,1,1,sp] ~ dunif(0,xlimit)
+S[i,2,1,sp] ~ dunif(0,ylimit)
+
+# Is the location within the plots 
+# habmat = 1 if 'on' plot and habmat = 0 if 'off' plot
+# pOK[i,1] <- habmat[trunc(S[i,1,1]+1), trunc(S[i,2,1]+1)]
+
+# Zero if not in surveyed plots, 1 if within plot 
+# OK[i,1] ~ dbern(pOK[i,1])   # OK[i] = 1, the ones trick
+
+# Calculate the distance from activity center to each net
+for(n in 1:nnets){
+d2[i,n,1,sp] <- pow(S[i,1,1,sp]-NetLoc[n,1],2) + pow(S[i,2,1,sp]-NetLoc[n,2],2)
+} # END nets
+
+for(j in 1:nmonths){
+ for(n in 1:nnets){
+ 
+ # Logit probability of capture in net n during month j in year 1
+ # * here you can add net specific covariates
+ 
+ logitp[i,j,n,1,sp] <- exp(intercept[sp] - beta[sp]*d2[i,n,1,sp])*z[i,1,sp]
+ 
+ # capture probability in net n during month j in year 1
+ 
+ capturep[i,j,n,1,sp] <- logitp[i,j,n,1,sp]/(1+sum(logitp[i,j,,1,sp]))
+ } # END nets
+
+# Determine the probability of not being captured which is 
+# 1 - probability of being captured in any of the other nets
+# therefore, the last cell probability indicates not captured
+
+capturep[i,j,nnets+1,1,sp] <- 1-sum(capturep[i,j,1:nnets,1,sp])
+
+# Ycat is a capture history with net number where bird was captured 
+# instead of a 1. If a bird wasn't capture it gets a value of (nnets+1)
+# in this case the non-captured value is 81. 
+
+Ycat[i,j,1,sp] ~ dcat(capturep[i,j,,1,sp])
+
+} # END months
+
+# SECOND YEAR
+for(y in 2:nyears){
+# Activity centers 
+
+# this works but is somewhat unrealistic 
+S[i,1,y,sp] ~ dnorm(S[i,1,y-1,sp],tauX[sp])T(0,xlimit) # truncate to 0 and xlimit
+S[i,2,y,sp] ~ dnorm(S[i,2,y-1,sp],tauY[sp])T(0,ylimit) # truncate to 0 and ylimit
+
+# bivariate normal centered around previous activity center 
+# This is currently now working 
+#S[i,1:2,y] ~ dmnorm(S[i,,y-1],tau[,])
+
+# Is the location within the plots 
+# habmat = 1 if 'on' plot and habmat = 0 if 'off' plot
+# pOK[i,y] <- habmat[trunc(S[i,1,y]+1), trunc(S[i,2,y]+1)] # habitat check
+
+# Zero if not in surveyed plots, 1 if within plot 
+# OK[i,y] ~ dbern(pOK[i,y])   # OK[i] = 1, the ones trick
+
+for(n in 1:nnets){
+d2[i,n,y,sp] <- pow(S[i,1,y,sp]-NetLoc[n,1],2) + pow(S[i,2,y,sp]-NetLoc[n,2],2)
+} # END nets
+
+for(j in 1:nmonths){
+ for(n in 1:nnets){
+ logitp[i,j,n,y,sp] <- exp(intercept[sp] - beta[sp]*d2[i,n,y,sp])*z[i,y,sp]
+ capturep[i,j,n,y,sp] <- logitp[i,j,n,y,sp]/(1+sum(logitp[i,j,,y,sp]))
+ } # end nets
+ 
+capturep[i,j,nnets+1,y,sp] <- 1-sum(capturep[i,j,1:nnets,y,sp])
+
+# the last cell probability indicates not captured
+# Ycat is a capture history with net number where bird was captured 
+# instead of a 1 and (nnets+1)(81 in this case) if a bird was not
+# captured. 
+
+Ycat[i,j,y,sp] ~ dcat(capturep[i,j,,y,sp])
+} # END months
+
+# sum over alive states from 1 to y
+still_alive[i,y,sp] <- sum(z[i,1:y,sp]) 
+
+# B indicates if individual is available to be recruited at time y
+B[i,y,sp] <- 1-step(still_alive[i,y,sp]-1)
+
+# Alive state at y is dependent on phi and gamma
+mu[i,y,sp] <- (sp.phi[sp,y]*z[i,y-1,sp])+(gamma[sp,y]*B[i,y-1,sp])
+
+# alive or dead bernouli trial 
+z[i,y,sp] ~ dbern(mu[i,y,sp])
+
+} # END years
+
+#NOTICE THAT M LOOP CONTINUES INTO DERVIED PARAMETERS
+#############################################################################################
+#
+# DERIVED PARAMETERS
+#
+#############################################################################################
+# Estimate number of recruits per year. 
+# This ensures that an individual can only recruit into the population once
+r[i,1,sp] <- z[i,1,sp]
+r[i,2,sp]<-(1-z[i,1,sp])*z[i,2,sp]
+r[i,3,sp]<-(1-z[i,1,sp])*(1-z[i,2,sp])*z[i,3,sp]
+r[i,4,sp]<-(1-z[i,1,sp])*(1-z[i,2,sp])*(1-z[i,3,sp])*z[i,4,sp]
+r[i,5,sp]<-(1-z[i,1,sp])*(1-z[i,2,sp])*(1-z[i,3,sp])*(1-z[i,4,sp])*z[i,5,sp]
+r[i,6,sp]<-(1-z[i,1,sp])*(1-z[i,2,sp])*(1-z[i,3,sp])*(1-z[i,4,sp])*(1-z[i,5,sp])*z[i,6,sp]
+r[i,7,sp]<-(1-z[i,1,sp])*(1-z[i,2,sp])*(1-z[i,3,sp])*(1-z[i,4,sp])*(1-z[i,5,sp])*(1-z[i,6,sp])*z[i,7,sp]
+r[i,8,sp]<-(1-z[i,1,sp])*(1-z[i,2,sp])*(1-z[i,3,sp])*(1-z[i,4,sp])*(1-z[i,5,sp])*(1-z[i,6,sp])*(1-z[i,7,sp])*z[i,8,sp]
+r[i,9,sp]<-(1-z[i,1,sp])*(1-z[i,2,sp])*(1-z[i,3,sp])*(1-z[i,4,sp])*(1-z[i,5,sp])*(1-z[i,6,sp])*(1-z[i,7,sp])*(1-z[i,8,sp])*z[i,9,sp]
+r[i,10,sp]<-(1-z[i,1,sp])*(1-z[i,2,sp])*(1-z[i,3,sp])*(1-z[i,4,sp])*(1-z[i,5,sp])*(1-z[i,6,sp])*(1-z[i,7,sp])*(1-z[i,8,sp])*(1-z[i,9,sp])*z[i,10,sp]
+
+} # END M
+
+for(y in 1:nyears){
+# calculate abundance for each year
+N[sp,y] <- sum(z[1:M,y,sp])
+
+# estimate density in each year
+D[sp,y] <- N[sp,y]/Area 
+
+# estimate recruitment in each year
+R[sp,y] <- sum(r[1:M,y,sp])
+
+} # END nyears
+} # END sp
+# END model
+}
